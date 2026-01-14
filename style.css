@@ -14,6 +14,14 @@ main {
     padding: 2rem 1rem;
 }
 
+.shop-by-category {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    color: #333;
+}
+
+
 h1, h2, h3 {
     margin: 0;
     font-weight: 700;
