@@ -1,5 +1,5 @@
 /* =================================
-   1. GLOBAL STYLES & STYLISH UPGRADES
+   1. GLOBAL STYLES
    ================================= */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -73,7 +73,7 @@ footer {
     gap: 2rem;
 }
 
-/* === MODIFIED: Product Card Structure === */
+/* === Product Card Structure === */
 .product-card {
     background-color: white;
     border: 1px solid #e9ecef;
@@ -91,7 +91,7 @@ footer {
     box-shadow: 0 8px 15px rgba(0,0,0,0.1);
 }
 
-/* === MODIFIED: Image Container === */
+/* === Image Container === */
 .product-image-container {
     width: 100%;
     aspect-ratio: 1 / 1;
@@ -103,10 +103,10 @@ footer {
 .product-image-container img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Fits the image inside, no cropping */
+    object-fit: contain; 
 }
 
-/* === NEW: Product Info Container === */
+/* === Product Info Container === */
 .product-info {
     padding: 0 1.5rem 1.5rem 1.5rem; /* Clean padding for text and button */
     display: flex;
