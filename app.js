@@ -1,44 +1,70 @@
-// This function runs when all the HTML on the page is fully loaded.
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- LOGIC FOR THE SEARCH BAR ---
+    // --- LOGIC FOR THE CONFIRMATION MODAL ---
+    const modal = document.getElementById("confirmation-modal");
+    const modalText = document.getElementById("modal-jersey-name");
+    const proceedBtn = document.getElementById("proceed-to-checkout");
+    const cancelBtn = document.getElementById("cancel-checkout");
+    const copyIconBtn = document.getElementById("copy-icon-btn"); // Get the new icon button
+    const copyFeedback = document.getElementById("copy-feedback-text"); // Get the feedback text element
+    const buyButtons = document.querySelectorAll('.buy-button');
+    let checkoutUrl = '';
+
+    if (modal) {
+        buyButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.preventDefault();
+                const card = button.closest('.product-card');
+                const jerseyName = card.querySelector('h3').textContent;
+                checkoutUrl = button.href;
+
+                modalText.textContent = jerseyName;
+                modal.style.display = "block";
+                copyFeedback.textContent = ""; // Clear feedback text on open
+            });
+        });
+
+        proceedBtn.onclick = () => {
+            window.location.href = checkoutUrl;
+        };
+
+        cancelBtn.onclick = () => {
+            modal.style.display = "none";
+        };
+
+        // === LOGIC FOR THE COPY ICON BUTTON ===
+        copyIconBtn.onclick = () => {
+            const textToCopy = modalText.textContent;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                copyFeedback.textContent = "Copied to clipboard!"; // Show feedback
+                // Hide the feedback message after a couple of seconds
+                setTimeout(() => {
+                    copyFeedback.textContent = "";
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+                copyFeedback.textContent = "Copy failed";
+            });
+        };
+        // === END OF LOGIC ===
+    }
+
+    // --- LOGIC FOR SEARCH BAR AND BACK-TO-TOP  ---
+    // ... 
     const searchBar = document.getElementById('search-bar');
-    // We check if the search bar exists on the page before trying to use it.
     if (searchBar) {
         const productCards = document.querySelectorAll('.product-card');
-
         searchBar.addEventListener('keyup', (event) => {
             const searchTerm = event.target.value.toLowerCase();
-
             productCards.forEach(card => {
                 const productName = card.querySelector('h3').textContent.toLowerCase();
-                if (productName.includes(searchTerm)) {
-                    card.style.display = 'flex'; // Changed to 'flex' to match new CSS
-                } else {
-                    card.style.display = 'none';
-                }
+                if (productName.includes(searchTerm)) { card.style.display = 'flex'; } else { card.style.display = 'none'; }
             });
         });
     }
-
-
-    // --- LOGIC FOR THE "BACK TO TOP" BUTTON ---
     const backToTopButton = document.getElementById('back-to-top-btn');
-
-    // We check if the button exists on the page.
     if (backToTopButton) {
-        // Show or hide the button based on scroll position
-        window.onscroll = () => {
-            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-                backToTopButton.style.display = "block";
-            } else {
-                backToTopButton.style.display = "none";
-            }
-        };
-
-        // Scroll to the top when the button is clicked
-        backToTopButton.onclick = () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        };
+        window.onscroll = () => { if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) { backToTopButton.style.display = "block"; } else { backToTopButton.style.display = "none"; } };
+        backToTopButton.onclick = () => { window.scrollTo({ top: 0, behavior: 'smooth' }); };
     }
 });

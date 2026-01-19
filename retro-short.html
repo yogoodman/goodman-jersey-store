@@ -446,6 +446,35 @@
     <!-- HTML for the Back to Top button -->
     <button id="back-to-top-btn" title="Go to top">&uarr;</button>
 
+    <!-- === START: CONFIRMATION MODAL === -->
+    <div id="confirmation-modal" class="modal">
+        <div class="modal-content">
+            <p>You are about to purchase:</p>
+            
+            <!-- New container for the name and icon -->
+            <div id="copy-container">
+                <h2 id="modal-jersey-name">Jersey Name Here</h2>
+                <!-- The new copy icon button -->
+                <button id="copy-icon-btn" title="Copy to clipboard">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <p id="copy-feedback-text"></p> <!-- To show "Copied!" message -->
+
+            <p class="modal-instruction">Click the icon to copy the name, then proceed to checkout.</p>
+            
+            <div class="modal-buttons">
+                <button id="cancel-checkout" class="modal-btn cancel">Cancel</button>
+                <button id="proceed-to-checkout" class="modal-btn proceed">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+    <!-- === END: CONFIRMATION MODAL === -->
+
     <!-- Link to JavaScript file -->
     <script src="app.js"></script>
 
